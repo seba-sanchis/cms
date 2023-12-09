@@ -1,0 +1,15 @@
+@import './styles/variables.scss';
+
+button[type="filled"] {
+  color: $text-primary-inverse;
+  background-color: $themed-red;
+  padding-left: 16px;
+  padding-right: 16px;
+  border-radius: 2px;
+  min-width: 36px;
+  height: 36px;
+}
+
+.nav-and-main-content {
+  display: flex;
+}

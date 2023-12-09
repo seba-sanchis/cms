@@ -1,0 +1,33 @@
+@import "../../styles/variables.scss";
+
+.navigation-drawer {
+  width: 256px;
+
+  ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .active-link {
+    background-color: $themed-red;
+    color: $text-primary-inverse;
+  }
+
+  a {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-weight: 600;
+    font-size: 15px;
+    line-height: 24px;
+    color: $text-secondary;
+    padding: 0 20px 0 16px;
+    cursor: pointer;
+    min-height: 48px;
+
+    &:not(.active-link):hover {
+      background-color: $general-background;
+    }
+  }
+}

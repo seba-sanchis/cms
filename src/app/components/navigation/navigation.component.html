@@ -1,5 +1,11 @@
-<nav>
-    <ul>
-        <li *ngFor="let link of links"><a href="{{link.url}}">{{ link.name }}</a></li>
-    </ul>
+<nav class="navigation-drawer">
+  <ul>
+    <li *ngFor="let link of links">
+      <a
+        [routerLink]="link.url"
+        [ngClass]="{ 'active-link': isActiveLink(link.url) }"
+        >{{ link.name }}</a
+      >
+    </li>
+  </ul>
 </nav>
