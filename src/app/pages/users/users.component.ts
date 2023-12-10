@@ -29,9 +29,13 @@ export class UsersComponent {
     Expires: '0',
   });
 
+  cacheBuster = new Date().getTime(); // Generates a unique value
+
   private fetchUsers(): void {
     this.http
-      .get<User[]>(`${this.apiUrl}/api/user`, { headers: this.headers })
+      .get<User[]>(`${this.apiUrl}/api/user?cacheBuster=${cacheBuster}`, {
+        headers: this.headers,
+      })
       .subscribe((data) => {
         this.users = data;
         this.calculateQuantities();
