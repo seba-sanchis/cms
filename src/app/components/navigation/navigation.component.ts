@@ -16,19 +16,19 @@ export class NavigationComponent {
       url: '/',
     },
     {
-      name: 'Orders',
+      name: 'Órdenes',
       url: '/orders',
     },
     {
-      name: 'Products',
+      name: 'Productos',
       url: '/products',
     },
     {
-      name: 'Customers',
-      url: '/customers',
+      name: 'Usuarios',
+      url: '/users',
     },
     {
-      name: 'Content',
+      name: 'Contenido',
       url: '/content',
     },
   ];

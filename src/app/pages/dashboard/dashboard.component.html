@@ -1,1 +1,42 @@
-<p>dashboard works!</p>
+<div>
+  <div>Ventas totales: {{ totalSales | currency }}</div>
+  <div>
+    Valor promedio por orden:
+    {{ averageOrderValue | number : "1.2-2" | currency }}
+  </div>
+
+  <div>Órdenes totales: {{ orders.length }}</div>
+  <div>Clientes registrados: {{ totalUsers }}</div>
+
+  <div>Tasa de conversión: {{ conversionRate | percent }}</div>
+  <div>Tasa de abandono: {{ bagAbandonmentRate | percent }}</div>
+
+  <div>
+    Los más vendidos:
+    <ul>
+      <li *ngFor="let bestSeller of bestSellers">
+        <span>{{ bestSeller.name }}</span>
+        <span>{{ bestSeller.totalSoldQuantity }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    Estado del inventario:
+    <ul>
+      <li *ngFor="let lowStockProduct of lowStockProducts">
+        <span>{{ lowStockProduct.name }}</span>
+        <span>{{ lowStockProduct.remainingStock }}</span>
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    Region Sales:
+    <ul>
+      <li *ngFor="let regionSale of regionSales | keyvalue">
+        {{ regionSale.key }}: {{ regionSale.value }}
+      </li>
+    </ul>
+  </div>
+</div>

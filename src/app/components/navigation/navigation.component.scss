@@ -2,6 +2,8 @@
 
 .navigation-drawer {
   width: 256px;
+  height: 100%;
+  border-right: 1px solid $line-divider;
 
   ul {
     list-style: none;
@@ -10,8 +12,8 @@
   }
 
   .active-link {
-    background-color: $themed-red;
-    color: $text-primary-inverse;
+    background-color: $general-background;
+    color: $themed-red;
   }
 
   a {

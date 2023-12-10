@@ -1,1 +1,22 @@
-<p>orders works!</p>
+<table>
+    <thead>
+      <tr>
+        <th>Número de orden</th>
+        <th>Fecha</th>
+        <th>Cliente</th>
+        <th>Estado</th>
+        <th>Total</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let order of orders; let i = index">
+        <td>{{ order.orderId }}</td>
+        <td>{{ order.date }}</td>
+        <td>{{ order.payer?.firstName }} {{ order.payer?.lastName }}</td>
+        <td>{{ order.status }}</td>
+        <td>{{ order.transaction?.paid }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  

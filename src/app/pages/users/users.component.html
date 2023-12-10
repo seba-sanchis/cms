@@ -1,0 +1,20 @@
+<table>
+  <thead>
+    <tr>
+      <th>Nombre</th>
+      <th>Email</th>
+      <th>Ubicación</th>
+      <th>Órdenes</th>
+      <th>Monto gastado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let user of users; let i = index">
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.location }}, {{ user.region }}</td>
+      <td>{{ userQuantities[i].amountOfOrders }}</td>
+      <td>{{ userQuantities[i].totalReceived }}</td>
+    </tr>
+  </tbody>
+</table>
