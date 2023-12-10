@@ -33,7 +33,7 @@ export class UsersComponent {
 
   private fetchUsers(): void {
     this.http
-      .get<User[]>(`${this.apiUrl}/api/user?cacheBuster=${cacheBuster}`, {
+      .get<User[]>(`${this.apiUrl}/api/user?cacheBuster=${this.cacheBuster}`, {
         headers: this.headers,
       })
       .subscribe((data) => {
