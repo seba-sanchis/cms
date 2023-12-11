@@ -26,10 +26,16 @@ export class UsersComponent {
   timestamp = new Date().getTime();
 
   private getUsers(): void {
-    this.http.get<User[]>(`${this.apiUrl}/api/user`).subscribe((data) => {
-      this.users = data;
-      this.calculateQuantities();
-    });
+    this.http
+      .get<User[]>(`${this.apiUrl}/api/user`, {
+        headers: {
+          'Cache-Control': 'no-store',
+        },
+      })
+      .subscribe((data) => {
+        this.users = data;
+        this.calculateQuantities();
+      });
   }
 
   private calculateQuantities(): void {
