@@ -23,13 +23,17 @@ export class UsersComponent {
     this.fetchUsers();
   }
 
+  timestamp = new Date().getTime();
+
   headers = new HttpHeaders({
     'Cache-Control': 'no-store',
   });
 
   private fetchUsers(): void {
     this.http
-      .get<User[]>(`${this.apiUrl}/api/user`, { headers: this.headers })
+      .get<User[]>(`${this.apiUrl}/api/user?timestamp=${this.timestamp}`, {
+        headers: this.headers,
+      })
       .subscribe((data) => {
         this.users = data;
         this.calculateQuantities();
