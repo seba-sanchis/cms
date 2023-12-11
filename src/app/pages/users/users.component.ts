@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
 import { environment } from '../../../environments/environment';
 
@@ -24,19 +24,10 @@ export class UsersComponent {
   }
 
   private getUsers(): void {
-    const headers = new HttpHeaders().set('Cache-Control', 'no-cache');
-
-    const options = {
-      headers,
-      cache: false,
-    };
-
-    this.http
-      .get<User[]>(`${this.apiUrl}/api/user`, options)
-      .subscribe((data) => {
-        this.users = data;
-        this.calculateQuantities();
-      });
+    this.http.get<User[]>(`${this.apiUrl}/api/user`).subscribe((data) => {
+      this.users = data;
+      this.calculateQuantities();
+    });
   }
 
   private calculateQuantities(): void {
