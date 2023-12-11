@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
@@ -14,8 +14,7 @@ import { environment } from '../../../environments/environment';
 export class UsersComponent {
   private apiUrl = environment.baseUrl;
 
-  constructor(private http: HttpClient) {}
-
+  http = inject(HttpClient);
   users: User[] = [];
   userQuantities: any[] = [];
 
@@ -24,6 +23,10 @@ export class UsersComponent {
   }
 
   private getUsers(): void {
+    // const headers = new HttpHeaders({
+    //   'Cache-Control': 'no-cache',
+    // });
+
     this.http.get<User[]>(`${this.apiUrl}/api/user`).subscribe((data) => {
       this.users = data;
       this.calculateQuantities();
