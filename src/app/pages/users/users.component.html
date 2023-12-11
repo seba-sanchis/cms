@@ -9,12 +9,14 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let user of users; let i = index">
+    @for (user of users; track $index) {
+    <tr>
       <td>{{ user.firstName }} {{ user.lastName }}</td>
       <td>{{ user.email }}</td>
       <td>{{ user.location }}, {{ user.region }}</td>
-      <td>{{ userQuantities[i].amountOfOrders }}</td>
-      <td>{{ userQuantities[i].totalReceived }}</td>
+      <td>{{ userQuantities[$index].amountOfOrders }}</td>
+      <td>{{ userQuantities[$index].totalReceived }}</td>
     </tr>
+    }
   </tbody>
 </table>

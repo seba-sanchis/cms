@@ -10,10 +10,11 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let product of products; let i = index">
+    @for (product of products; track $index) {
+    <tr>
       <td>
         <img
-          [ngSrc]="'https://e-commerce.sebastiansanchis.com' + product.image"
+          [src]="'https://e-commerce.sebastiansanchis.com' + product.image"
           alt="product image"
           width="40"
           height="40"
@@ -22,11 +23,12 @@
       <td>{{ product.name }}</td>
       <td>{{ product.category }}</td>
       <td>
-        {{ productQuantities[i].stockQuantity }} in stock for
-        {{ productQuantities[i].variantsQuantity }} variants
+        {{ productQuantities[$index].stockQuantity }} in stock for
+        {{ productQuantities[$index].variantsQuantity }} variants
       </td>
-      <td>{{ productQuantities[i].soldQuantity }}</td>
+      <td>{{ productQuantities[$index].soldQuantity }}</td>
       <td>{{ product.price }}</td>
     </tr>
+    }
   </tbody>
 </table>

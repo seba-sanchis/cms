@@ -1,46 +1,33 @@
-import { Component } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { ProductsService } from '../../services/products/products.service';
 import { Product } from '../../models/product.model';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule],
   templateUrl: './products.component.html',
-  styleUrl: './products.component.scss',
+  styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent {
-  private apiUrl = environment.baseUrl;
-
-  constructor(private http: HttpClient) {}
-
+export class ProductsComponent implements OnInit {
   products: Product[] = [];
   productQuantities: any[] = [];
+
+  constructor(private productsService: ProductsService) {}
 
   ngOnInit() {
     this.fetchProducts();
   }
 
   private fetchProducts(): void {
-    this.http.get<Product[]>(`${this.apiUrl}/api/product`).subscribe((data) => {
+    this.productsService.getProducts().subscribe((data) => {
       this.products = data;
       this.calculateQuantities();
     });
   }
 
   private calculateQuantities(): void {
-    this.productQuantities = this.products.map((product) => ({
-      stockQuantity: product.stock.reduce(
-        (total, quantity) => total + quantity,
-        0
-      ),
-      variantsQuantity: product.stock.length,
-      soldQuantity: product.sold.reduce(
-        (total, quantity) => total + quantity,
-        0
-      ),
-    }));
+    this.productQuantities = this.productsService.calculateQuantities(this.products);
   }
 }

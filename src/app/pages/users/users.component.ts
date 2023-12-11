@@ -1,45 +1,33 @@
-import { Component, inject } from '@angular/core';
-import { CommonModule, NgOptimizedImage } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { Component, OnInit } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { UsersService } from '../../services/users/users.service';
 import { User } from '../../models/user.model';
-import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-users',
   standalone: true,
-  imports: [CommonModule, NgOptimizedImage],
+  imports: [CommonModule],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
-export class UsersComponent {
-  private apiUrl = environment.baseUrl;
-
-  http = inject(HttpClient);
+export class UsersComponent implements OnInit {
   users: User[] = [];
   userQuantities: any[] = [];
+
+  constructor(private usersService: UsersService) {}
 
   ngOnInit() {
     this.getUsers();
   }
 
   private getUsers(): void {
-    // const headers = new HttpHeaders({
-    //   'Cache-Control': 'no-cache',
-    // });
-
-    this.http.get<User[]>(`${this.apiUrl}/api/user`).subscribe((data) => {
+    this.usersService.getUsers().subscribe((data) => {
       this.users = data;
       this.calculateQuantities();
     });
   }
 
   private calculateQuantities(): void {
-    this.userQuantities = this.users.map((user) => ({
-      amountOfOrders: user.purchases?.length || 0,
-      totalReceived: user.purchases?.reduce(
-        (sum, purchase) => sum + (purchase.transaction?.received || 0),
-        0
-      ),
-    }));
+    this.userQuantities = this.usersService.calculateQuantities(this.users);
   }
 }
