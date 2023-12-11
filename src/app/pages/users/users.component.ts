@@ -24,9 +24,7 @@ export class UsersComponent {
   }
 
   private getUsers(): void {
-    const headers = new HttpHeaders({
-      'Cache-Control': 'no-store',
-    });
+    const headers = new HttpHeaders().set('Cache-Control', 'no-cache');
 
     const options = {
       headers,
