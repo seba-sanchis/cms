@@ -24,7 +24,7 @@ export class UsersComponent {
   }
 
   headers = new HttpHeaders({
-    'Cache-Control': 'no-cache, no-store',
+    'Cache-Control': 'no-store',
   });
 
   private fetchUsers(): void {
