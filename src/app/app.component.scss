@@ -1,4 +1,17 @@
-@import './styles/variables.scss';
+@import "./styles/variables.scss";
+
+.nav-and-main-content {
+  display: flex;
+  height: 100%;
+  background-color: $general-background;
+
+  main {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+}
 
 button[type="filled"] {
   color: $text-primary-inverse;
@@ -8,8 +21,4 @@ button[type="filled"] {
   border-radius: 2px;
   min-width: 36px;
   height: 36px;
-}
-
-.nav-and-main-content {
-  display: flex;
 }

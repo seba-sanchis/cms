@@ -1,46 +1,108 @@
-<div>
-  <div>Ventas totales: {{ totalSales | currency }}</div>
-  <div>
-    Valor promedio por orden:
-    {{ averageOrderValue | number : "1.2-2" | currency }}
+<div class="main-panel">
+  <div class="row-card">
+    <div class="basic-card">
+      <div>Ventas totales: {{ totalSales | currency }}</div>
+      <div>
+        Valor promedio por orden:
+        {{ averageOrderValue | number : "1.2-2" | currency }}
+      </div>
+    </div>
+    <div class="basic-card">
+      <div>Órdenes totales: {{ orders.length }}</div>
+      <div>Clientes registrados: {{ totalUsers }}</div>
+    </div>
+    <div class="basic-card">
+      <div>
+        <div>Tasa de conversión:</div>
+        <svg
+          class="circular-chart"
+          width="100"
+          height="100"
+          viewBox="0 0 100 100"
+        >
+          <circle class="circle-background" cx="50" cy="50" r="45"></circle>
+          <circle
+            class="circle-progress"
+            cx="50"
+            cy="50"
+            r="45"
+            [style.stroke-dasharray]="calculateDashArray(conversionRate)"
+          ></circle>
+          <text
+            x="50"
+            y="50"
+            text-anchor="middle"
+            dy="0.3em"
+            class="percentage"
+          >
+            {{ conversionRate | percent }}
+          </text>
+        </svg>
+      </div>
+      <div>
+        <div>Tasa de abandono:</div>
+        <svg
+          class="circular-chart"
+          width="100"
+          height="100"
+          viewBox="0 0 100 100"
+        >
+          <circle class="circle-background" cx="50" cy="50" r="45"></circle>
+          <circle
+            class="circle-progress"
+            cx="50"
+            cy="50"
+            r="45"
+            [style.stroke-dasharray]="calculateDashArray(bagAbandonmentRate)"
+          ></circle>
+          <text
+            x="50"
+            y="50"
+            text-anchor="middle"
+            dy="0.3em"
+            class="percentage"
+          >
+            {{ bagAbandonmentRate | percent }}
+          </text>
+        </svg>
+      </div>
+    </div>
   </div>
 
-  <div>Órdenes totales: {{ orders.length }}</div>
-  <div>Clientes registrados: {{ totalUsers }}</div>
+  <div class="row-card">
+    <div class="basic-card">
+      <div>Los más vendidos:</div>
+      <ul>
+        @for (bestSeller of bestSellers; track $index) {
+        <li>
+          <span>{{ bestSeller.name }}</span>
+          <span>{{ bestSeller.totalSoldQuantity }}</span>
+        </li>
+        }
+      </ul>
+    </div>
 
-  <div>Tasa de conversión: {{ conversionRate | percent }}</div>
-  <div>Tasa de abandono: {{ bagAbandonmentRate | percent }}</div>
+    <div class="basic-card">
+      <div>Estado del inventario:</div>
 
-  <div>
-    Los más vendidos:
-    <ul>
-      @for (bestSeller of bestSellers; track $index) {
-      <li>
-        <span>{{ bestSeller.name }}</span>
-        <span>{{ bestSeller.totalSoldQuantity }}</span>
-      </li>
-      }
-    </ul>
-  </div>
+      <ul>
+        @for (lowStockProduct of lowStockProducts; track $index) {
+        <li>
+          <span>{{ lowStockProduct.name }}</span>
+          <span>{{ lowStockProduct.remainingStock }}</span>
+        </li>
+        }
+      </ul>
+    </div>
 
-  <div>
-    Estado del inventario:
-    <ul>
-      @for (lowStockProduct of lowStockProducts; track $index) {
-      <li>
-        <span>{{ lowStockProduct.name }}</span>
-        <span>{{ lowStockProduct.remainingStock }}</span>
-      </li>
-      }
-    </ul>
-  </div>
+    <div class="basic-card">
+      <div>Ventas por región:</div>
 
-  <div>
-    Region Sales:
-    <ul>
-      @for (regionSale of regionSales.entries(); track $index) {
-      <li>{{ regionSale[0] }}: {{ regionSale[1] }}</li>
-      }
-    </ul>
+      <ul>
+        @for (regionSale of regionSales.entries(); track $index) {
+        <li>{{ regionSale[0] }}: {{ regionSale[1] }}</li>
+        }
+      </ul>
+    </div>
   </div>
 </div>

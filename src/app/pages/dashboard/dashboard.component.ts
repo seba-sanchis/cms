@@ -33,6 +33,14 @@ export class DashboardComponent implements OnInit {
     this.fetchData();
   }
 
+  dashArrayValue: string = '';
+
+  // Inside your component logic
+  calculateDashArray(rate: number): string {
+    this.dashArrayValue = `${rate * 283}, 283`;
+    return this.dashArrayValue;
+  }
+
   private fetchData(): void {
     this.dashboardService.getOrders().subscribe((orders) => {
       this.orders = orders;

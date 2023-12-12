@@ -1,0 +1,48 @@
+@import "../../styles/variables.scss";
+
+.main-panel {
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  gap: 32px;
+  padding: 32px;
+
+  .row-card {
+    display: flex;
+    width: 100%;
+    gap: 32px;
+
+    .basic-card {
+      padding: 32px;
+      border: 1px solid $line-divider;
+      border-radius: $standard-border-radius;
+      width: 256px;
+      height: 320px;
+    }
+  }
+}
+
+.circular-chart {
+  display: block;
+  margin: 10px auto;
+
+  .circle-background {
+    fill: none;
+    stroke: #e5e5e5;
+    stroke-width: 5;
+  }
+
+  .circle-progress {
+    fill: none;
+    stroke: $themed-red;
+    stroke-width: 5;
+    stroke-linecap: round;
+    transition: stroke-dasharray 0.3s ease;
+  }
+
+  .percentage {
+    font-size: 1.5em;
+    fill: #333;
+  }
+}
