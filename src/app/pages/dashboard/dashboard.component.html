@@ -37,13 +37,15 @@
           viewBox="0 0 100 100"
         >
           <circle class="circle-background" cx="50" cy="50" r="45"></circle>
-          <circle
-            class="circle-progress"
-            cx="50"
-            cy="50"
-            r="45"
-            [style.stroke-dasharray]="calculateDashArray(conversionRate)"
-          ></circle>
+          <g [style.transform]="'rotate(-90deg)'" transform-origin="50% 50%">
+            <circle
+              class="circle-progress"
+              cx="50"
+              cy="50"
+              r="45"
+              [style.stroke-dasharray]="calculateDashArray(conversionRate)"
+            ></circle>
+          </g>
           <text
             x="50"
             y="50"
@@ -64,13 +66,15 @@
           viewBox="0 0 100 100"
         >
           <circle class="circle-background" cx="50" cy="50" r="45"></circle>
-          <circle
-            class="circle-progress"
-            cx="50"
-            cy="50"
-            r="45"
-            [style.stroke-dasharray]="calculateDashArray(bagAbandonmentRate)"
-          ></circle>
+          <g [style.transform]="'rotate(-90deg)'" transform-origin="50% 50%">
+            <circle
+              class="circle-progress"
+              cx="50"
+              cy="50"
+              r="45"
+              [style.stroke-dasharray]="calculateDashArray(bagAbandonmentRate)"
+            ></circle>
+          </g>
           <text
             x="50"
             y="50"
