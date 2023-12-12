@@ -1,19 +1,35 @@
 <div class="main-panel">
   <div class="row-card">
     <div class="basic-card">
-      <div>Ventas totales: {{ totalSales | currency }}</div>
-      <div>
-        Valor promedio por orden:
+      <div class="item-title">Ventas</div>
+      <div class="item-subtitle">Valor promedio por orden</div>
+      <div class="metric-value">
         {{ averageOrderValue | number : "1.2-2" | currency }}
       </div>
+
+      <hr class="divider" />
+
+      <div class="item-subtitle">Total recaudado</div>
+      <div class="metric-value">{{ totalSales | currency }}</div>
     </div>
     <div class="basic-card">
-      <div>Órdenes totales: {{ orders.length }}</div>
-      <div>Clientes registrados: {{ totalUsers }}</div>
+      <div class="item-title">Estadísticas</div>
+      <div class="item-subtitle">Clientes registrados</div>
+      <div class="metric-value">{{ totalUsers }}</div>
+
+      <hr class="divider" />
+
+      <div class="item-subtitle">Carritos abandonados</div>
+      <div class="metric-value">{{ bagAbandonment }}</div>
+
+      <hr class="divider" />
+
+      <div class="item-subtitle">Total de órdenes</div>
+      <div class="metric-value">{{ orders.length }}</div>
     </div>
     <div class="basic-card">
       <div>
-        <div>Tasa de conversión:</div>
+        <div class="item-title">Tasa de conversión</div>
         <svg
           class="circular-chart"
           width="100"
@@ -40,7 +56,7 @@
         </svg>
       </div>
       <div>
-        <div>Tasa de abandono:</div>
+        <div class="item-title">Tasa de abandono</div>
         <svg
           class="circular-chart"
           width="100"
@@ -71,36 +87,38 @@
 
   <div class="row-card">
     <div class="basic-card">
-      <div>Los más vendidos:</div>
-      <ul>
+      <div class="item-title">Los más vendidos</div>
+      <ul class="metrics-section">
         @for (bestSeller of bestSellers; track $index) {
-        <li>
-          <span>{{ bestSeller.name }}</span>
-          <span>{{ bestSeller.totalSoldQuantity }}</span>
+        <li class="metric-row">
+          <div class="metric-title">{{ bestSeller.name }}</div>
+          <div class="metric-value">{{ bestSeller.totalSoldQuantity }}</div>
         </li>
         }
       </ul>
     </div>
 
     <div class="basic-card">
-      <div>Estado del inventario:</div>
+      <div class="item-title">Estado del inventario</div>
 
-      <ul>
+      <ul class="metrics-section">
         @for (lowStockProduct of lowStockProducts; track $index) {
-        <li>
-          <span>{{ lowStockProduct.name }}</span>
-          <span>{{ lowStockProduct.remainingStock }}</span>
+        <li class="metric-row">
+          <span class="metric-title">{{ lowStockProduct.name }}</span>
+          <span class="metric-value">{{ lowStockProduct.remainingStock }}</span>
         </li>
         }
       </ul>
     </div>
 
     <div class="basic-card">
-      <div>Ventas por región:</div>
-
-      <ul>
+      <div class="item-title">Ventas por región</div>
+      <ul class="metrics-section">
         @for (regionSale of regionSales.entries(); track $index) {
-        <li>{{ regionSale[0] }}: {{ regionSale[1] }}</li>
+        <li class="metric-row">
+          <span class="metric-title">{{ regionSale[0] }}</span>
+          <span class="metric-value">{{ regionSale[1] }}</span>
+        </li>
         }
       </ul>
     </div>

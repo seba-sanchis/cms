@@ -14,11 +14,77 @@
     gap: 32px;
 
     .basic-card {
-      padding: 32px;
-      border: 1px solid $line-divider;
-      border-radius: $standard-border-radius;
+      padding: 24px;
       width: 256px;
       height: 320px;
+      background-color: $brand-background;
+      border: 1px solid $line-divider;
+      border-radius: $standard-border-radius;
+
+      .item-title {
+        font-weight: 500;
+        font-size: 18px;
+        line-height: 24px;
+      }
+
+      .item-subtitle {
+        font-weight: 400;
+        font-size: 13px;
+        line-height: 20px;
+        color: $text-primary;
+        padding-top: 11px;
+      }
+
+      .metric-value {
+        font-weight: 400;
+        font-size: 32px;
+        letter-spacing: -0.01em;
+        line-height: 40px;
+        color: $text-primary;
+      }
+
+      .divider {
+        margin: 8px 0;
+        border: 0;
+        border-bottom: 1px solid $line-divider;
+      }
+
+      .metrics-section {
+        list-style: none;
+        display: table;
+        width: 100%;
+        padding-top: 13px;
+        padding-bottom: 6px;
+
+        .metric-row {
+          height: 32px;
+          display: table-row;
+          align-items: center;
+
+          .metric-title {
+            display: table-cell;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 20px;
+            color: $text-primary;
+            padding-top: 5px;
+            padding-bottom: 7px;
+          }
+
+          .metric-value {
+            display: table-cell;
+            font-weight: 400;
+            font-size: 13px;
+            line-height: 20px;
+            color: $text-primary;
+            padding-top: 5px;
+            padding-bottom: 7px;
+            white-space: nowrap;
+            text-align: right;
+            padding-left: 8px;
+          }
+        }
+      }
     }
   }
 }

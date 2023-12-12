@@ -89,10 +89,22 @@ export class DashboardService {
       .slice(0, 5);
   }
 
-  calculateBagAbandonmentRate(users: User[]): number {
-    const usersWithItemsInBag = users.filter(
-      (user) => user.bag && user.bag.length > 0
+  private filterUsersWithItemsInBag(users: User[]): User[] {
+    return users.filter((user) => user.bag && user.bag.length > 0);
+  }
+
+  calculateBagAbandonment(users: User[]): number {
+    const usersWithItemsInBag = this.filterUsersWithItemsInBag(users);
+
+    const abandonedBagUsers = usersWithItemsInBag.filter(
+      (user) => !user.purchases || user.purchases.length === 0
     );
+    console.log('abandonedBagUsers ->', abandonedBagUsers.length);
+    return abandonedBagUsers.length;
+  }
+
+  calculateBagAbandonmentRate(users: User[]): number {
+    const usersWithItemsInBag = this.filterUsersWithItemsInBag(users);
 
     const abandonedBagUsers = usersWithItemsInBag.filter(
       (user) => !user.purchases || user.purchases.length === 0

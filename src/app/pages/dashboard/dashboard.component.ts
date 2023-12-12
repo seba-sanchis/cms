@@ -24,6 +24,8 @@ export class DashboardComponent implements OnInit {
   conversionRate: number = 0;
   bestSellers: BestSeller[] = [];
   lowStockProducts: LowStock[] = [];
+  abandonedBagUsers: User[] = [];
+  bagAbandonment: number = 0;
   bagAbandonmentRate: number = 0;
   regionSales: Map<string, number> = new Map<string, number>();
 
@@ -52,6 +54,7 @@ export class DashboardComponent implements OnInit {
     this.dashboardService.getUsers().subscribe((users) => {
       this.totalUsers = users.length;
       this.calculateConversionRate();
+      this.calculateBagAbandonment(users);
       this.calculateBagAbandonmentRate(users);
       this.regionSales = this.dashboardService.calculateRegionSales(users);
     });
@@ -82,6 +85,10 @@ export class DashboardComponent implements OnInit {
   private calculateLowStockProducts(products: Product[]): void {
     this.lowStockProducts =
       this.dashboardService.calculateLowStockProducts(products);
+  }
+
+  private calculateBagAbandonment(users: User[]): void {
+    this.bagAbandonment = this.dashboardService.calculateBagAbandonment(users);
   }
 
   private calculateBagAbandonmentRate(users: User[]): void {
