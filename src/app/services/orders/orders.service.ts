@@ -50,6 +50,19 @@ export class OrdersService {
 
   private customFormatDate(dateString: string, datePipe: DatePipe): string {
     const date = new Date(dateString);
-    return datePipe.transform(date, 'MMMM d, h:mm a') || '';
+
+    // Use datePipe to format the date
+    let formattedDate = datePipe.transform(date, 'MMMM d, h:mm a') || '';
+
+    // Capitalize the first letter
+    formattedDate =
+      formattedDate.charAt(0).toUpperCase() + formattedDate.slice(1);
+
+    // Make "am" and "pm" lowercase
+    formattedDate = formattedDate.replace(/\b(A|P)M\b/g, (match) =>
+      match.toLowerCase()
+    );
+
+    return formattedDate;
   }
 }

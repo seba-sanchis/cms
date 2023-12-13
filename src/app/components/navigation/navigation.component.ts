@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { Router, NavigationEnd, RouterModule } from '@angular/router';
 import { filter } from 'rxjs/operators';
+
 @Component({
   selector: 'app-navigation',
   standalone: true,
@@ -14,22 +15,27 @@ export class NavigationComponent {
     {
       name: 'Dashboard',
       url: '/',
+      icon: 'dashboard',
     },
     {
       name: 'Órdenes',
       url: '/orders',
+      icon: 'inbox',
     },
     {
       name: 'Productos',
       url: '/products',
+      icon: 'sell',
     },
     {
       name: 'Usuarios',
       url: '/users',
+      icon: 'person',
     },
     {
       name: 'Contenido',
       url: '/content',
+      icon: 'image',
     },
   ];
 

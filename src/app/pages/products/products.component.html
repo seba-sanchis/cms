@@ -23,11 +23,11 @@
       <td>{{ product.name }}</td>
       <td>{{ product.category }}</td>
       <td>
-        {{ productQuantities[$index].stockQuantity }} in stock for
-        {{ productQuantities[$index].variantsQuantity }} variants
+        {{ productQuantities[$index].stockQuantity }} en stock de
+        {{ productQuantities[$index].variantsQuantity }} variantes
       </td>
       <td>{{ productQuantities[$index].soldQuantity }}</td>
-      <td>{{ product.price }}</td>
+      <td>{{ product.price | currency }}</td>
     </tr>
     }
   </tbody>

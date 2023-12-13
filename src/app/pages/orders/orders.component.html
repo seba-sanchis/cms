@@ -15,7 +15,7 @@
       <td>{{ order.date }}</td>
       <td>{{ order.payer?.firstName }} {{ order.payer?.lastName }}</td>
       <td>{{ order.status }}</td>
-      <td>{{ order.transaction?.paid }}</td>
+      <td>{{ order.transaction?.paid | currency }}</td>
     </tr>
     }
   </tbody>

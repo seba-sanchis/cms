@@ -15,7 +15,7 @@
       <td>{{ user.email }}</td>
       <td>{{ user.location }}, {{ user.region }}</td>
       <td>{{ userQuantities[$index].amountOfOrders }}</td>
-      <td>{{ userQuantities[$index].totalReceived }}</td>
+      <td>{{ userQuantities[$index].totalReceived | currency }}</td>
     </tr>
     }
   </tbody>

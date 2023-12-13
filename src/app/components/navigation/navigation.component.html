@@ -4,7 +4,11 @@
       <a
         [routerLink]="link.url"
         [ngClass]="{ 'active-link': isActiveLink(link.url) }"
-        >{{ link.name }}</a
+        ><span class="material-icons icon-item">
+          {{ link.icon }}
+        </span>
+
+        <span>{{ link.name }}</span></a
       >
     </li>
   </ul>

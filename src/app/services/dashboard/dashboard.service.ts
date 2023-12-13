@@ -99,7 +99,7 @@ export class DashboardService {
     const abandonedBagUsers = usersWithItemsInBag.filter(
       (user) => !user.purchases || user.purchases.length === 0
     );
-    console.log('abandonedBagUsers ->', abandonedBagUsers.length);
+
     return abandonedBagUsers.length;
   }
 
