@@ -1,27 +1,43 @@
-# DashboardAngular
+# Dashboard - Comprehensive data solution.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.0.6.
+Concise and powerful data solution. With intuitive visualization and robust management tools, gain instant insights for informed decision-making and streamlined operations. Transform complex data into actionable intelligence effortlessly.
 
-## Development server
+## Setups
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+Before you start, you will need to create the <code>environment.development.ts</code> file inside "/src/environments" to connect your E-commerce.
 
-## Code scaffolding
+Open the .env file and type the following variables:
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+```bash
+    export const environment = {
+      baseUrl: *add your E-commerce url*,
+    };
+```
 
-## Build
+## Available Scripts
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+Install packages and all dependencies.
 
-## Running unit tests
+```bash
+    ng i
+```
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Runs the app in the development mode.
 
-## Running end-to-end tests
+```bash
+    ng serve
+```
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+Open [http://localhost:4200](http://localhost:4200) to view it in your browser.
 
-## Further help
+## Learn More
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+To learn more about this project, take a look at the following resources:
+
+- [Angular](https://angular.dev/) - Powerful web application framework developed by Google, providing a comprehensive solution for building dynamic and scalable applications.
+- [Sass](https://sass-lang.com/) - CSS preprocessor that extends the capabilities of CSS with features like variables, nesting, and mixins, making styling more maintainable and efficient.
+- [Typescript](https://www.typescriptlang.org) - High-level programming language that extends JavaScript by adding static typing, improving code maintainability and catching errors during development.
+
+## Deployment
+
+Application hosted on AWS Lambda: https://dashboard.sebastiansanchis.com/
