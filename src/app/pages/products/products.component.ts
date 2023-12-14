@@ -28,6 +28,8 @@ export class ProductsComponent implements OnInit {
   }
 
   private calculateQuantities(): void {
-    this.productQuantities = this.productsService.calculateQuantities(this.products);
+    this.productQuantities = this.productsService.calculateQuantities(
+      this.products
+    );
   }
 }
