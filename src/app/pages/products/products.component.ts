@@ -2,15 +2,16 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsService } from '../../services/products/products.service';
 import { Product } from '../../models/product.model';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-products',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterModule],
   templateUrl: './products.component.html',
   styleUrls: ['./products.component.scss'],
 })
-export class ProductsComponent implements OnInit {
+export class ProductsComponent {
   products: Product[] = [];
   productQuantities: any[] = [];
 

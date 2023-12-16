@@ -11,7 +11,7 @@ import { Order } from '../../models/order.model';
   templateUrl: './orders.component.html',
   styleUrls: ['./orders.component.scss'],
 })
-export class OrdersComponent implements OnInit {
+export class OrdersComponent {
   orders: Order[] = [];
   customerQuantities: any[] = [];
 

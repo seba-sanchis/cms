@@ -16,7 +16,7 @@ import { User } from '../../models/user.model';
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.scss'],
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
   orders: Order[] = [];
   totalSales: number = 0;
   averageOrderValue: number = 0;

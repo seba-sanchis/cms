@@ -10,7 +10,7 @@ import { User } from '../../models/user.model';
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss',
 })
-export class UsersComponent implements OnInit {
+export class UsersComponent {
   users: User[] = [];
   userQuantities: any[] = [];
 

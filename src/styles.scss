@@ -10,8 +10,23 @@
 
 * {
   box-sizing: border-box;
+  background: none;
+  border: none;
   padding: 0;
   margin: 0;
+  resize: none;
+
+  /* Hide the number input spinner arrows */
+  input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Hide the arrows in Firefox */
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
 }
 
 html {
@@ -49,7 +64,7 @@ main {
 
 h1 {
   font-size: 2em;
-  margin: 0.67em 0;
+  margin: 0;
 }
 
 /* Grouping content

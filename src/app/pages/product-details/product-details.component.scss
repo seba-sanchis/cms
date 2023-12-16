@@ -1,0 +1,50 @@
+@import "../../styles/variables.scss";
+
+.form {
+  .page-header {
+    display: flex;
+    padding: 0 24px;
+    height: 70px;
+    .page-title {
+      font-weight: 600;
+      font-size: 25px;
+      line-height: 32px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      padding-top: 19px;
+    }
+  }
+  .details-section {
+    display: flex;
+    max-width: calc(var(1120px) - 48px);
+    padding: 0 24px;
+
+    .left-col {
+      min-width: 640px;
+      .input-container {
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 56px;
+
+        label {
+          font-weight: 400;
+          -webkit-font-smoothing: antialiased;
+          letter-spacing: 0.011em;
+          font-size: 12px;
+          line-height: 16px;
+          margin-top: calc(20px - 12px);
+          color: $text-secondary;
+          margin-bottom: 3px;
+        }
+      }
+    }
+
+    .side-panel {
+      width: 352px;
+      padding-left: 24px;
+    }
+  }
+}
