@@ -1,6 +1,6 @@
-# Dashboard - Comprehensive data solution.
+# CMS - Comprehensive content management solution.
 
-Concise and powerful data solution. With intuitive visualization and robust management tools, gain instant insights for informed decision-making and streamlined operations. Transform complex data into actionable intelligence effortlessly.
+Efficient content management made simple. With intuitive tools and robust features, this CMS empowers to seamlessly handle diverse content. From streamlined operations to informed decision-making, transform complex content management into effortless and actionable intelligence.
 
 ## Setups
 
