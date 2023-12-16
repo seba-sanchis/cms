@@ -54,6 +54,10 @@ export class NavigationComponent {
   }
 
   isActiveLink(url: string): boolean {
-    return this.activeLink === url;
+    if (url === '/') {
+      return this.activeLink === url;
+    } else {
+      return this.activeLink.includes(url);
+    }
   }
 }

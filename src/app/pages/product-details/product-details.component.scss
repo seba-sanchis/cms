@@ -1,10 +1,15 @@
 @import "../../styles/variables.scss";
 
 .form {
+  max-width: 1120px;
+
   .page-header {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 0 24px;
     height: 70px;
+
     .page-title {
       font-weight: 600;
       font-size: 25px;
@@ -12,22 +17,35 @@
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      padding-top: 19px;
+    }
+
+    .button {
+      height: 40px;
+      color: $text-primary-inverse;
+      background-color: #0d0d0d;
+      padding-left: 16px;
+      padding-right: 16px;
+      border-radius: 2px;
     }
   }
   .details-section {
     display: flex;
-    max-width: calc(var(1120px) - 48px);
     padding: 0 24px;
 
     .left-col {
       min-width: 640px;
-      .input-container {
+      flex: 1;
+
+      div {
         margin-bottom: 24px;
         display: flex;
         flex-direction: column;
         width: 100%;
-        height: 56px;
+        height: fit-content;
+        padding: 0 12px 10px;
+        border: 1px solid $container-border;
+        border-radius: $standard-border-radius;
+        background-color: $brand-background;
 
         label {
           font-weight: 400;
@@ -35,16 +53,80 @@
           letter-spacing: 0.011em;
           font-size: 12px;
           line-height: 16px;
-          margin-top: calc(20px - 12px);
+          margin-top: 8px;
           color: $text-secondary;
           margin-bottom: 3px;
+        }
+
+        input {
+          font-weight: 400;
+          -webkit-font-smoothing: antialiased;
+          font-size: 15px;
+          line-height: 24px;
+          flex: 1;
+          width: 100%;
+          height: 48px;
+          color: $text-primary;
+          overflow-x: hidden;
+          overflow-y: auto;
+          outline: none;
+        }
+
+        textarea {
+          font-weight: 400;
+          -webkit-font-smoothing: antialiased;
+          font-size: 15px;
+          line-height: 24px;
+          width: 100%;
+          height: 128px;
+          color: $text-primary;
+          overflow-x: hidden;
+          overflow-y: auto;
+          outline: none;
         }
       }
     }
 
-    .side-panel {
-      width: 352px;
+    .sidepanel {
+      width: calc(352px + 24px);
       padding-left: 24px;
+
+      div {
+        margin-bottom: 24px;
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: fit-content;
+        padding: 0 12px 10px;
+        border: 1px solid $container-border;
+        border-radius: $standard-border-radius;
+        background-color: $brand-background;
+
+        label {
+          font-weight: 400;
+          -webkit-font-smoothing: antialiased;
+          letter-spacing: 0.011em;
+          font-size: 12px;
+          line-height: 16px;
+          margin-top: 8px;
+          color: $text-secondary;
+          margin-bottom: 3px;
+        }
+
+        input {
+          font-weight: 400;
+          -webkit-font-smoothing: antialiased;
+          font-size: 15px;
+          line-height: 24px;
+          flex: 1;
+          width: 100%;
+          height: 48px;
+          color: $text-primary;
+          overflow-x: hidden;
+          overflow-y: auto;
+          outline: none;
+        }
+      }
     }
   }
 }

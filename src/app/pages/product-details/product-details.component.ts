@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { FormGroup, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ProductDetailsService } from '../../services/product-details/product-details.service';
-import { Product } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-details',
@@ -12,40 +11,23 @@ import { Product } from '../../models/product.model';
   styleUrls: ['./product-details.component.scss'],
 })
 export class ProductDetailsComponent {
-  product: Product = {
-    _id: '',
-    sku: '',
-    category: '',
-    name: '',
-    image: '',
-    description: '',
-    features: [],
-    color: '',
-    sizes: [],
-    stock: [],
-    sold: [],
-    price: 0,
-  };
-
-  productForm!: FormGroup;
-
   constructor(
     private productDetailsService: ProductDetailsService,
     private route: ActivatedRoute
-  ) {
-    this.productForm = new FormGroup({
-      sku: new FormControl(''),
-      category: new FormControl(''),
-      name: new FormControl(''),
-      image: new FormControl(''),
-      description: new FormControl(''),
-      features: new FormControl(''),
-      color: new FormControl(''),
-      sizes: new FormControl(''),
-      stock: new FormControl(''),
-      price: new FormControl(''),
-    });
-  }
+  ) {}
+
+  productForm = new FormGroup({
+    sku: new FormControl(''),
+    category: new FormControl(''),
+    name: new FormControl(''),
+    image: new FormControl(''),
+    description: new FormControl(''),
+    features: new FormControl(['']),
+    color: new FormControl(''),
+    sizes: new FormControl(['']),
+    stock: new FormControl([0]),
+    price: new FormControl(0),
+  });
 
   ngOnInit() {
     // Retrieve the 'id' from the route parameters
@@ -59,20 +41,18 @@ export class ProductDetailsComponent {
 
   private fetchProduct(id: string): void {
     this.productDetailsService.getProduct(id).subscribe((data) => {
-      this.product = data;
-
       // Set form values based on the fetched product
-      this.productForm.patchValue({
-        sku: this.product.sku,
-        category: this.product.category,
-        name: this.product.name,
-        image: this.product.image,
-        description: this.product.description,
-        features: this.product.features,
-        color: this.product.color,
-        sizes: this.product.sizes,
-        stock: this.product.stock,
-        price: this.product.price,
+      this.productForm.setValue({
+        sku: data.sku,
+        category: data.category,
+        name: data.name,
+        description: data.description,
+        features: data.features,
+        color: data.color,
+        sizes: data.sizes,
+        stock: data.stock,
+        price: data.price,
+        image: data.image,
       });
     });
   }
