@@ -3,7 +3,7 @@ import { Order } from './order.model';
 import { Product } from './product.model';
 
 export interface User {
-  _id: string;
+  _id?: string;
   firstName: string;
   lastName: string;
   dni: number;
@@ -13,10 +13,10 @@ export interface User {
   address: string;
   postcode: number;
   email: string;
-  password: string;
+  password?: string;
   areaCode: number;
   phone: number;
-  bag?: Item[];
-  favorite?: Product[];
-  purchases?: Order[];
+  bag?: Item[] | null;
+  favorite?: Product[] | null;
+  purchases?: Order[] | null;
 }

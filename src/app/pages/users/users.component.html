@@ -10,7 +10,7 @@
   </thead>
   <tbody>
     @for (user of users; track $index) {
-    <tr>
+    <tr [routerLink]="['/users', user._id]">
       <td>{{ user.firstName }} {{ user.lastName }}</td>
       <td>{{ user.email }}</td>
       <td>{{ user.location }}, {{ user.region }}</td>
