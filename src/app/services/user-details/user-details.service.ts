@@ -17,20 +17,13 @@ export class UserDetailsService {
   }
 
   updateUser(id: string, user: User): Observable<User> {
-    // Example headers, customize as needed
-    const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-    });
 
-    const options = {
-      headers,
-      body: JSON.stringify(user),
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+      })
     };
 
-    return this.http.request<User>(
-      'PATCH',
-      `${this.apiUrl}/api/user/${id}`,
-      options
-    );
+    return this.http.patch<User>(`${this.apiUrl}/api/user/${id}`, user, httpOptions);
   }
 }
