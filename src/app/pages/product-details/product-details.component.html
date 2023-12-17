@@ -29,9 +29,15 @@
         </div>
       </div>
       <div class="sidepanel">
-        <div>
+        <div class="image-preview">
           <label for="image">Imagen</label>
-          <input type="file" id="image" formControlName="image" />
+          <input type="text" id="image" formControlName="image" />
+          <img
+            [src]="'https://e-commerce.sebastiansanchis.com' + productForm.get('image')?.value"
+            alt="product image"
+            width="240"
+            height="240"
+          />
         </div>
         <div>
           <label for="color">Color</label>
