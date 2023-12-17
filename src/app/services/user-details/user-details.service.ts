@@ -17,13 +17,6 @@ export class UserDetailsService {
   }
 
   updateUser(id: string, user: User): Observable<User> {
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-      })
-    };
-
-    return this.http.patch<User>(`${this.apiUrl}/api/user/${id}`, user, httpOptions);
+    return this.http.patch<User>(`${this.apiUrl}/api/user/${id}`, user);
   }
 }

@@ -3,6 +3,8 @@ import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { UserDetailsService } from '../../services/user-details/user-details.service';
 import { User } from '../../models/user.model';
+import { Location } from '@angular/common';
+import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-user-details',
@@ -14,7 +16,8 @@ import { User } from '../../models/user.model';
 export class UserDetailsComponent {
   constructor(
     private userDetailsService: UserDetailsService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private location: Location
   ) {}
 
   userForm = new FormGroup({
@@ -50,17 +53,17 @@ export class UserDetailsComponent {
 
       // Set form values based on the fetched product
       this.userForm.setValue({
-        firstName: data.firstName,
-        lastName: data.lastName,
-        dni: data.dni,
-        email: data.email,
-        birthday: formattedBirthday,
-        region: data.region,
-        location: data.location,
-        address: data.address,
-        postcode: data.postcode,
-        areaCode: data.areaCode,
-        phone: data.phone,
+        firstName: data.firstName || null,
+        lastName: data.lastName || null,
+        dni: data.dni || null,
+        email: data.email || null,
+        birthday: formattedBirthday || null,
+        region: data.region || null,
+        location: data.location || null,
+        address: data.address || null,
+        postcode: data.postcode || null,
+        areaCode: data.areaCode || null,
+        phone: data.phone || null,
       });
     });
   }
@@ -75,16 +78,23 @@ export class UserDetailsComponent {
       const id = params['id'];
 
       // Call the userDetailsService to update the user
-      this.userDetailsService.updateUser(id, updatedUserData).subscribe(
-        (updatedUser) => {
-          // Handle success, e.g., show a success message
-          console.log('User updated successfully:', updatedUser);
+      const observer: Observer<User> = {
+        next: (updatedUser) => {
+          // Redirect to the previous page
+          this.location.back();
         },
-        (error) => {
+        error: (error) => {
           // Handle error, e.g., show an error message
           console.error('Error updating user:', error);
-        }
-      );
+        },
+        complete: () => {
+          // Cleanup logic
+        },
+      };
+
+      this.userDetailsService
+        .updateUser(id, updatedUserData)
+        .subscribe(observer);
     });
   }
 }

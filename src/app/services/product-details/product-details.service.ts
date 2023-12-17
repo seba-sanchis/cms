@@ -15,4 +15,9 @@ export class ProductDetailsService {
   getProduct(id: string): Observable<Product> {
     return this.http.get<Product>(`${this.apiUrl}/api/product/${id}`);
   }
+
+  updateProduct(id: string, product: Product): Observable<Product> {
+    console.log("product->", product);
+    return this.http.patch<Product>(`${this.apiUrl}/api/product/${id}`, product);
+  }
 }
