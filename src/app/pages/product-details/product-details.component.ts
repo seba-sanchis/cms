@@ -33,6 +33,8 @@ export class ProductDetailsComponent {
     price: new FormControl(0),
   });
 
+  selectedFile: File | null = null;
+
   ngOnInit() {
     // Retrieve the 'id' from the route parameters
     this.route.params.subscribe((params) => {
@@ -43,28 +45,26 @@ export class ProductDetailsComponent {
     });
   }
 
+  onFileSelected(event: Event) {
+    const inputElement = event.target as HTMLInputElement;
+
+    if (inputElement.files && inputElement.files.length > 0) {
+      this.selectedFile = inputElement.files[0];
+    }
+  }
+
   private fetchProduct(id: string): void {
     this.productDetailsService.getProduct(id).subscribe((data) => {
       // Set form values based on the fetched product
-      this.productForm.setValue({
-        sku: data.sku || null,
-        category: data.category || null,
-        name: data.name || null,
-        description: data.description || null,
-        features: data.features || null,
-        color: data.color || null,
-        sizes: data.sizes || null,
-        stock: data.stock || null,
-        price: data.price || null,
-        image: data.image || null,
-      });
+      this.productForm.patchValue(data);
     });
   }
 
   // Function to handle form submission
   onSubmit(): void {
     // Retrieve the updated product data from the form
-    const updatedProductData: Product = this.productForm.value as Product;
+    const updatedProduct: Product = this.productForm.value as Product;
+    const updatedFile: File = this.selectedFile as File;
 
     // Retrieve the 'id' from the route parameters
     this.route.params.subscribe((params) => {
@@ -86,7 +86,7 @@ export class ProductDetailsComponent {
       };
 
       this.productDetailsService
-        .updateProduct(id, updatedProductData)
+        .updateProduct(id, updatedProduct, updatedFile)
         .subscribe(observer);
     });
   }

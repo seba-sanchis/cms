@@ -1,5 +1,10 @@
 <div>
-  <form class="form" [formGroup]="productForm" (ngSubmit)="onSubmit()">
+  <form
+    class="form"
+    [formGroup]="productForm"
+    (ngSubmit)="onSubmit()"
+    enctype="multipart/form-data"
+  >
     <div class="page-header">
       <h1 class="page-title">Detalles de producto</h1>
       <button class="button" type="submit">Guardar</button>
@@ -30,13 +35,18 @@
       </div>
       <div class="sidepanel">
         <div class="image-preview">
-          <label for="image">Imagen</label>
-          <input type="text" id="image" formControlName="image" />
           <img
-            [src]="'https://e-commerce.sebastiansanchis.com' + productForm.get('image')?.value"
+            [src]="productForm.get('image')?.value"
             alt="product image"
-            width="240"
-            height="240"
+            width="48"
+            height="48"
+          />
+          <label for="file">Imagen</label>
+          <input
+            type="file"
+            id="file"
+            accept="image/png"
+            (change)="onFileSelected($event)"
           />
         </div>
         <div>
