@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, switchMap, throwError } from 'rxjs';
+import { Observable, catchError, switchMap } from 'rxjs';
 import { Product } from '../../models/product.model';
 import { environment } from '../../../environments/environment';
 
@@ -9,6 +9,7 @@ import { environment } from '../../../environments/environment';
 })
 export class ProductDetailsService {
   private apiUrl = environment.baseUrl;
+  private imageUrl = environment.awsS3;
 
   constructor(private http: HttpClient) {}
 
@@ -23,12 +24,20 @@ export class ProductDetailsService {
     // Replace non-alphanumeric characters with hyphens and all characters converted to lowercase
     const slug = product.name.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
-    // Append the 'file' and 'id' to the formData
-    formData.append('file', file, `${id}_${slug}.png`);
+    const imageName = `${id}_${slug}.png`;
 
+    // Append the 'file' and 'id' to the formData
+    formData.append('file', file, imageName);
+
+    // Construct the image URL and update the product
+    const image = `${this.imageUrl}/${imageName}`;
+    const productData = { ...product, image };
+
+    console.log('productData ->', productData);
+    
     // Make the first HTTP POST request
     return this.http
-      .patch<Product>(`${this.apiUrl}/api/product/${id}`, product)
+      .patch<Product>(`${this.apiUrl}/api/product/${id}`, productData)
       .pipe(
         switchMap(() => {
           // If the first request is successful, make the second HTTP PATCH request
