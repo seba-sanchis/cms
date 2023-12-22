@@ -34,7 +34,7 @@
         </div>
       </div>
       <div class="sidepanel">
-        <div class="image-preview">
+        <div class="input-container image-preview">
           <img
             [src]="productForm.get('image')?.value"
             alt="product image"
@@ -49,21 +49,41 @@
             (change)="onFileSelected($event)"
           />
         </div>
-        <div>
+        <div class="input-container">
           <label for="color">Color</label>
           <input type="text" id="color" formControlName="color" />
         </div>
-        <div>
-          <label for="sizes">Talle</label>
-          <input type="text" id="sizes" formControlName="sizes" />
-        </div>
-        <div>
-          <label for="stock">Stock</label>
-          <input type="text" id="stock" formControlName="stock" />
-        </div>
-        <div>
+        <div class="input-container">
           <label for="price">Precio</label>
           <input type="number" id="price" formControlName="price" />
+        </div>
+        <div class="input-container">
+          <div class="inventory-section">
+            <div formArrayName="sizes" class="col">
+              <label for="sizes">Talle</label>
+              <div *ngFor="let size of sizes.controls; let i = index">
+                <input id="sizes-{{ i }}" type="text" [formControlName]="i" />
+              </div>
+            </div>
+            <div formArrayName="stock" class="col">
+              <label for="stock">Stock</label>
+              <div *ngFor="let stock of stock.controls; let i = index">
+                <span>
+                  <input
+                    id="stock-{{ i }}"
+                    type="number"
+                    [formControlName]="i"
+                  />
+                  <button type="button" (click)="removeSize(i)">
+                    <span class="material-symbols-rounded"> remove </span>
+                  </button>
+                </span>
+              </div>
+            </div>
+          </div>
+          <button type="button" (click)="addSize()">
+            <span class="material-symbols-rounded"> add </span>
+          </button>
         </div>
       </div>
     </div>

@@ -18,6 +18,14 @@ export class ProductDetailsService {
   }
 
   updateProduct(id: string, product: Product, file: File): Observable<Product> {
+
+    // If there is no file, update the product without making a request to AWS
+    if (!file) {
+      const productData = { ...product };
+
+      return this.http.patch<Product>(`${this.apiUrl}/api/product/${id}`, productData);
+    }
+  
     // Create a new FormData and append the file with the new name
     const formData = new FormData();
 
@@ -33,8 +41,6 @@ export class ProductDetailsService {
     const image = `${this.imageUrl}/${imageName}`;
     const productData = { ...product, image };
 
-    console.log('productData ->', productData);
-    
     // Make the first HTTP POST request
     return this.http
       .patch<Product>(`${this.apiUrl}/api/product/${id}`, productData)

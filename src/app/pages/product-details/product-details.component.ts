@@ -1,15 +1,21 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormArray,
+  FormBuilder,
+  FormControl,
+  FormGroup,
+  ReactiveFormsModule,
+} from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { ProductDetailsService } from '../../services/product-details/product-details.service';
 import { Product } from '../../models/product.model';
-import { Location } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Observer } from 'rxjs';
 
 @Component({
   selector: 'app-product-details',
   standalone: true,
-  imports: [ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss'],
 })
@@ -17,7 +23,8 @@ export class ProductDetailsComponent {
   constructor(
     private productDetailsService: ProductDetailsService,
     private route: ActivatedRoute,
-    private location: Location
+    private location: Location,
+    private fb: FormBuilder
   ) {}
 
   productForm = new FormGroup({
@@ -28,10 +35,32 @@ export class ProductDetailsComponent {
     description: new FormControl(''),
     features: new FormControl(['']),
     color: new FormControl(''),
-    sizes: new FormControl(['']),
-    stock: new FormControl([0]),
+    sizes: this.fb.array([]),
+    stock: this.fb.array([]),
     price: new FormControl(0),
   });
+
+  // Getter for the sizes form array
+  get sizes() {
+    return this.productForm.get('sizes') as FormArray;
+  }
+
+  // Getter for the stock form array
+  get stock() {
+    return this.productForm.get('stock') as FormArray;
+  }
+
+  // Method to add a new size control to the form array
+  addSize() {
+    this.sizes.push(this.fb.control(''));
+    this.stock.push(this.fb.control(''));
+  }
+
+  // Method to remove a size control to the form array
+  removeSize(index: number) {
+    this.sizes.removeAt(index);
+    this.stock.removeAt(index);
+  }
 
   selectedFile: File | null = null;
 
@@ -56,7 +85,22 @@ export class ProductDetailsComponent {
   private fetchProduct(id: string): void {
     this.productDetailsService.getProduct(id).subscribe((data) => {
       // Set form values based on the fetched product
-      this.productForm.patchValue(data);
+      const castedData: Partial<Product> = data as Partial<Product>;
+      this.productForm.patchValue(castedData);
+
+      // Clear existing sizes and stock controls
+      this.sizes.clear();
+      this.stock.clear();
+
+      // Populate sizes controls based on the fetched product's sizes array
+      data.sizes.forEach((sizeValue: string) => {
+        this.sizes.push(this.fb.control(sizeValue));
+      });
+
+      // Populate stock controls based on the fetched product's stock array
+      data.stock.forEach((stockValue: number) => {
+        this.stock.push(this.fb.control(stockValue));
+      });
     });
   }
 
