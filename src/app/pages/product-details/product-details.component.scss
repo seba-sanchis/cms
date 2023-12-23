@@ -37,11 +37,25 @@
     display: flex;
     padding: 0 24px;
 
+    .add-btn {
+      display: flex;
+      align-self: flex-end;
+      padding: 8px;
+      cursor: pointer;
+    }
+
+    .remove-btn {
+      display: flex;
+      align-self: center;
+      padding: 8px;
+      cursor: pointer;
+    }
+
     .left-col {
       min-width: 640px;
       flex: 1;
 
-      div {
+      .input-container {
         margin-bottom: 24px;
         display: flex;
         flex-direction: column;
@@ -88,6 +102,31 @@
           overflow-x: hidden;
           overflow-y: auto;
           outline: none;
+        }
+
+        .features-section {
+          padding-top: 8px;
+
+          div {
+            display: flex;
+            flex-direction: row;
+
+            input {
+              width: 128px;
+              margin: 8px 0;
+              padding: 0 12px;
+              border: 1px solid $container-border;
+              border-radius: $standard-border-radius;
+
+              &:hover {
+                border: 1px solid $container-border-selected;
+              }
+
+              &:focus {
+                border: 1px solid $container-border-selected;
+              }
+            }
+          }
         }
       }
     }
@@ -136,13 +175,6 @@
           align-self: center;
         }
 
-        button {
-          align-self: flex-end;
-          margin: 8px 0;
-          padding: 12px 8px;
-          cursor: pointer;
-        }
-
         .inventory-section {
           display: flex;
           flex-direction: row;
@@ -150,6 +182,7 @@
 
           .col {
             padding-top: 8px;
+
             input {
               width: 128px;
               margin: 8px 0;
@@ -166,7 +199,7 @@
               }
             }
 
-            span {
+            div {
               display: flex;
             }
           }

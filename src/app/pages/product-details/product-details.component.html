@@ -12,29 +12,44 @@
 
     <div class="details-section">
       <div class="left-col">
-        <div>
+        <div class="input-container">
           <label for="sku">SKU</label>
           <input type="text" id="sku" formControlName="sku" />
         </div>
-        <div>
+        <div class="input-container">
           <label for="category">Categoría</label>
           <input type="text" id="category" formControlName="category" />
         </div>
-        <div>
+        <div class="input-container">
           <label for="name">Nombre</label>
           <input type="text" id="name" formControlName="name" />
         </div>
-        <div>
+        <div class="input-container">
           <label for="description">Descripción</label>
           <textarea id="description" formControlName="description"></textarea>
         </div>
-        <div>
-          <label for="features">Atributos</label>
-          <input type="text" id="features" formControlName="features" />
+        <div formArrayName="features" class="input-container">
+          <div class="features-section">
+            <label for="features">Atributos</label>
+            <div *ngFor="let feature of features.controls; let i = index">
+              <input id="features-{{ i }}" type="text" [formControlName]="i" />
+              <button
+                type="button"
+                (click)="removeFeature(i)"
+                class="remove-btn"
+              >
+                <span class="material-symbols-rounded"> remove </span>
+              </button>
+            </div>
+          </div>
+          <button type="button" (click)="addFeature()" class="add-btn">
+            <span class="material-symbols-rounded"> add </span>
+          </button>
         </div>
       </div>
+
       <div class="sidepanel">
-        <div class="input-container image-preview">
+        <div class="input-container">
           <img
             [src]="productForm.get('image')?.value"
             alt="product image"
@@ -68,20 +83,18 @@
             <div formArrayName="stock" class="col">
               <label for="stock">Stock</label>
               <div *ngFor="let stock of stock.controls; let i = index">
-                <span>
-                  <input
-                    id="stock-{{ i }}"
-                    type="number"
-                    [formControlName]="i"
-                  />
-                  <button type="button" (click)="removeSize(i)">
-                    <span class="material-symbols-rounded"> remove </span>
-                  </button>
-                </span>
+                <input id="stock-{{ i }}" type="number" [formControlName]="i" />
+                <button
+                  type="button"
+                  (click)="removeSize(i)"
+                  class="remove-btn"
+                >
+                  <span class="material-symbols-rounded"> remove </span>
+                </button>
               </div>
             </div>
           </div>
-          <button type="button" (click)="addSize()">
+          <button type="button" (click)="addSize()" class="add-btn">
             <span class="material-symbols-rounded"> add </span>
           </button>
         </div>

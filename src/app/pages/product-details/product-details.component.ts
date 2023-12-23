@@ -33,10 +33,10 @@ export class ProductDetailsComponent {
     name: new FormControl(''),
     image: new FormControl(''),
     description: new FormControl(''),
-    features: new FormControl(['']),
+    features: this.fb.array(['']),
     color: new FormControl(''),
-    sizes: this.fb.array([]),
-    stock: this.fb.array([]),
+    sizes: this.fb.array(['']),
+    stock: this.fb.array([0]),
     price: new FormControl(0),
   });
 
@@ -50,6 +50,11 @@ export class ProductDetailsComponent {
     return this.productForm.get('stock') as FormArray;
   }
 
+  // Getter for the features form array
+  get features() {
+    return this.productForm.get('features') as FormArray;
+  }
+
   // Method to add a new size control to the form array
   addSize() {
     this.sizes.push(this.fb.control(''));
@@ -59,6 +64,18 @@ export class ProductDetailsComponent {
   // Method to remove a size control to the form array
   removeSize(index: number) {
     this.sizes.removeAt(index);
+    this.stock.removeAt(index);
+  }
+
+  // Method to add a new feature control to the form array
+  addFeature() {
+    this.features.push(this.fb.control(''));
+    this.stock.push(this.fb.control(''));
+  }
+
+  // Method to remove a feature control to the form array
+  removeFeature(index: number) {
+    this.features.removeAt(index);
     this.stock.removeAt(index);
   }
 
@@ -88,9 +105,10 @@ export class ProductDetailsComponent {
       const castedData: Partial<Product> = data as Partial<Product>;
       this.productForm.patchValue(castedData);
 
-      // Clear existing sizes and stock controls
+      // Clear existing controls
       this.sizes.clear();
       this.stock.clear();
+      this.features.clear();
 
       // Populate sizes controls based on the fetched product's sizes array
       data.sizes.forEach((sizeValue: string) => {
@@ -100,6 +118,11 @@ export class ProductDetailsComponent {
       // Populate stock controls based on the fetched product's stock array
       data.stock.forEach((stockValue: number) => {
         this.stock.push(this.fb.control(stockValue));
+      });
+
+      // Populate features controls based on the fetched product's features array
+      data.features.forEach((featureValue: string) => {
+        this.features.push(this.fb.control(featureValue));
       });
     });
   }
