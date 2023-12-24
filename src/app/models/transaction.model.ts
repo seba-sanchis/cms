@@ -1,5 +1,5 @@
 export interface Transaction {
-  _id?: string;
+  _id: string;
   bank: string | undefined;
   installment: number | undefined;
   paid: number | undefined;

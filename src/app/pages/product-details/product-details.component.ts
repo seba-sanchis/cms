@@ -102,8 +102,7 @@ export class ProductDetailsComponent {
   private fetchProduct(id: string): void {
     this.productDetailsService.getProduct(id).subscribe((data) => {
       // Set form values based on the fetched product
-      const castedData: Partial<Product> = data as Partial<Product>;
-      this.productForm.patchValue(castedData);
+      this.productForm.patchValue(data);
 
       // Clear existing controls
       this.sizes.clear();

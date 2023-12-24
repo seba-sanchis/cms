@@ -1,1 +1,21 @@
-<p>content works!</p>
+<table>
+    <thead>
+      <tr>
+        <th>Título</th>
+        <th>Subtítulo</th>
+        <th>Sección</th>
+        <th>Actualizado</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (content of content; track $index) {
+      <tr [routerLink]="['/content', content._id]">
+        <td>{{ content.title }}</td>
+        <td>{{ content.subtitle }}</td>
+        <td>{{ content.tag }}</td>
+        <td>{{ content.lastUpdated }}</td>
+      </tr>
+      }
+    </tbody>
+  </table>
+  

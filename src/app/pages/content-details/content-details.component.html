@@ -1,0 +1,59 @@
+<div>
+  <form
+    class="form"
+    [formGroup]="contentForm"
+    (ngSubmit)="onSubmit()"
+    enctype="multipart/form-data"
+  >
+    <div class="page-header">
+      <h1 class="page-title">Detalles de contenido</h1>
+      <button class="button" type="submit">Guardar</button>
+    </div>
+
+    <div class="details-section">
+      <div class="left-col">
+        <div class="input-container">
+          <label for="title">Título</label>
+          <input type="text" id="title" formControlName="title" />
+        </div>
+        <div class="input-container">
+          <label for="subtitle">Subtítulo</label>
+          <input type="text" id="subtitle" formControlName="subtitle" />
+        </div>
+        <div class="input-container">
+          <label for="url">Link</label>
+          <input type="text" id="url" formControlName="url" />
+        </div>
+        <div class="input-container">
+          <label for="tag">Sección</label>
+          <select type="text" id="tag" formControlName="tag" class="input-select">
+            <option value="Banner">Banner</option>
+            <option value="Categoría">Categoría</option>
+            <option value="Red Social">Red Social</option>
+            <option value="Organización">Organización</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="sidepanel">
+        <div class="input-container">
+          <div class="img-container">
+            <img
+              [src]="contentForm.get('image')?.value"
+              alt="content image"
+              width="326"
+              height="326"
+            />
+          </div>
+          <label for="file">Imagen</label>
+          <input
+            type="file"
+            id="file"
+            accept="image/png"
+            (change)="onFileSelected($event)"
+          />
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

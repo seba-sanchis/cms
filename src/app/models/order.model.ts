@@ -4,7 +4,7 @@ import { Picked } from './picked.model';
 import { Transaction } from './transaction.model';
 
 export interface Order {
-  _id?: string;
+  _id: string;
   orderId: string | undefined;
   date: string | undefined;
   status: string | undefined;

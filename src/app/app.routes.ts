@@ -6,6 +6,7 @@ import { UsersComponent } from './pages/users/users.component';
 import { ContentComponent } from './pages/content/content.component';
 import { ProductDetailsComponent } from './pages/product-details/product-details.component';
 import { UserDetailsComponent } from './pages/user-details/user-details.component';
+import { ContentDetailsComponent } from './pages/content-details/content-details.component';
 
 export const routes: Routes = [
   { path: '', component: DashboardComponent },
@@ -15,4 +16,5 @@ export const routes: Routes = [
   { path: 'users', component: UsersComponent },
   { path: 'users/:id', component: UserDetailsComponent },
   { path: 'content', component: ContentComponent },
+  { path: 'content/:id', component: ContentDetailsComponent },
 ];

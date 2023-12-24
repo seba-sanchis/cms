@@ -1,5 +1,5 @@
 export interface Picked {
-  _id?: string;
+  _id: string;
   category: string | undefined;
   description: string | undefined;
   sku: string;

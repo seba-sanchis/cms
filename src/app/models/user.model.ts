@@ -3,7 +3,7 @@ import { Order } from './order.model';
 import { Product } from './product.model';
 
 export interface User {
-  _id?: string;
+  _id: string;
   firstName: string;
   lastName: string;
   dni: number;

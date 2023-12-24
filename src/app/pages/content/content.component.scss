@@ -1,0 +1,37 @@
+@import "../../styles/variables.scss";
+
+/* Style the entire table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: $brand-background;
+}
+
+/* Style the table header */
+//   thead {
+
+//   }
+
+/* Style the table header cells */
+th {
+  padding: 16px 32px;
+  text-align: left;
+  border-bottom: 1px solid $line-divider;
+}
+
+/* Style the table body */
+//   tbody {
+
+//   }
+
+/* Style table cells */
+td {
+  padding: 16px 32px;
+  border-bottom: 1px solid $line-divider;
+}
+
+/* Hover effect on table rows */
+tr:hover {
+  background-color: $general-background;
+  cursor: pointer;
+}
