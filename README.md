@@ -11,6 +11,7 @@ Open the .env file and type the following variables:
 ```bash
     export const environment = {
       baseUrl: *add your E-commerce url*,
+      awsS3: *add your AWS S3 bucket url*,
     };
 ```
 
