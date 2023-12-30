@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { NavigationComponent } from './components/navigation/navigation.component';
@@ -10,6 +10,7 @@ import { NavigationComponent } from './components/navigation/navigation.componen
   standalone: true,
   imports: [
     CommonModule,
+    RouterLink,
     RouterOutlet,
     HttpClientModule,
     HeaderComponent,
