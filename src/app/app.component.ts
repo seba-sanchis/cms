@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule, HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { RouterOutlet } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
@@ -15,7 +15,6 @@ import { NavigationComponent } from './components/navigation/navigation.componen
     HeaderComponent,
     NavigationComponent,
   ],
-  providers: [{provide: LocationStrategy, useClass: HashLocationStrategy}],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
 })
