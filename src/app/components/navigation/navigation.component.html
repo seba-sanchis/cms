@@ -2,7 +2,7 @@
   <ul>
     <li *ngFor="let link of links">
       <a
-        [routerLink]="[link.url]"
+        [routerLink]="link.url"
         [ngClass]="{ 'active-link': isActiveLink(link.url) }"
         ><span class="material-icons icon-item">
           {{ link.icon }}
