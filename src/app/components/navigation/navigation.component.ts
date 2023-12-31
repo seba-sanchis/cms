@@ -1,6 +1,11 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { Router, NavigationEnd, RouterModule, RouterLink } from '@angular/router';
+import {
+  Router,
+  NavigationEnd,
+  RouterModule,
+  RouterLink,
+} from '@angular/router';
 import { filter } from 'rxjs/operators';
 
 @Component({

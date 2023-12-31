@@ -12,7 +12,7 @@
     margin: 0;
   }
 
-  .active-link {
+  .is-active {
     background-color: $general-background;
     color: $themed-red;
 
@@ -49,7 +49,7 @@
       transition: opacity 150ms linear;
     }
 
-    &:not(.active-link):hover {
+    &:not(.is-active):hover {
       background-color: $general-background;
     }
   }

@@ -3,7 +3,7 @@
     <li *ngFor="let link of links">
       <a
         [routerLink]="link.url"
-        [ngClass]="{ 'active-link': isActiveLink(link.url) }"
+        [ngClass]="{ 'is-active': isActiveLink(link.url) }"
         ><span class="material-icons icon-item">
           {{ link.icon }}
         </span>
