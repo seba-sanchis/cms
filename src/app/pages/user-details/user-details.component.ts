@@ -23,15 +23,15 @@ export class UserDetailsComponent {
   userForm = new FormGroup({
     firstName: new FormControl(''),
     lastName: new FormControl(''),
-    dni: new FormControl(0),
+    dni: new FormControl(''),
     birthday: new FormControl(''),
     email: new FormControl(''),
     region: new FormControl(''),
     location: new FormControl(''),
     address: new FormControl(''),
-    postcode: new FormControl(0),
-    areaCode: new FormControl(0),
-    phone: new FormControl(0),
+    zip: new FormControl(''),
+    areaCode: new FormControl(''),
+    phone: new FormControl(''),
   });
 
   ngOnInit() {
@@ -47,23 +47,23 @@ export class UserDetailsComponent {
   private fetchUser(id: string): void {
     this.userDetailsService.getUser(id).subscribe((data) => {
       // Format the date to 'YYYY-MM-DD'
-      const formattedBirthday = data.birthday
-        ? new Date(data.birthday).toISOString().split('T')[0]
+      const formattedBirthday = data.privacy.birthday
+        ? new Date(data.privacy.birthday).toISOString().split('T')[0]
         : '';
 
       // Set form values based on the fetched product
       this.userForm.setValue({
-        firstName: data.firstName || null,
-        lastName: data.lastName || null,
-        dni: data.dni || null,
-        email: data.email || null,
+        firstName: data.privacy.firstName || null,
+        lastName: data.privacy.lastName || null,
+        dni: data.privacy.dni || null,
+        email: data.account.email || null,
         birthday: formattedBirthday || null,
-        region: data.region || null,
-        location: data.location || null,
-        address: data.address || null,
-        postcode: data.postcode || null,
-        areaCode: data.areaCode || null,
-        phone: data.phone || null,
+        region: data.shipping.region || null,
+        location: data.shipping.location || null,
+        address: data.shipping.address || null,
+        zip: data.shipping.zip || null,
+        areaCode: data.shipping.areaCode || null,
+        phone: data.shipping.phone || null,
       });
     });
   }

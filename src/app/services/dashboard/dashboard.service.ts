@@ -120,7 +120,7 @@ export class DashboardService {
       if (user.purchases) {
         user.purchases.forEach((purchase) => {
           if (purchase.status === 'approved') {
-            const region = user.region;
+            const region = user.shipping.region;
             regionSales.set(region, (regionSales.get(region) || 0) + 1);
           }
         });

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../../environments/environment';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { User } from '../../models/user.model';
 import { Observable } from 'rxjs';
 
@@ -17,6 +17,6 @@ export class UserDetailsService {
   }
 
   updateUser(id: string, user: User): Observable<User> {
-    return this.http.patch<User>(`${this.apiUrl}/api/user/${id}`, user);
+    return this.http.patch<User>(`${this.apiUrl}/api/user/${id}`, { ...user, _id: id });
   }
 }
