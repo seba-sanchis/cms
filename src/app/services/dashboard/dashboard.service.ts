@@ -38,6 +38,59 @@ export class DashboardService {
     }, 0);
   }
 
+  getLastOrders(orders: Order[], n: number): Order[] {
+    // Filter out orders with undefined or improperly formatted dates
+    const validOrders = orders.filter(
+      (order) =>
+        order.date !== undefined &&
+        new Date(order.date).toString() !== 'Invalid Date'
+    );
+
+    // Sort the valid orders by date in descending order
+    const sortedOrders = validOrders.sort((a, b) => {
+      // Ensure that 'date' is not undefined
+      if (a.date && b.date) {
+        const dateA = new Date(a.date);
+        const dateB = new Date(b.date);
+        return dateB.getTime() - dateA.getTime();
+      }
+      return 0; // Handle the case where 'date' is undefined
+    });
+
+    // Return the first n orders
+    return sortedOrders.slice(0, n);
+  }
+
+  calculateMonthlySales(orders: Order[]): Map<string, number> {
+    const monthlySales = new Map<string, number>();
+
+    // Initialize with zero values for all months of the current year
+    const currentYear = new Date().getFullYear();
+    for (let month = 1; month <= 12; month++) {
+      const monthKey = `${currentYear}-${month.toString().padStart(2, '0')}`;
+      monthlySales.set(monthKey, 0);
+    }
+
+    orders.forEach((order) => {
+      if (order.payment && order.transaction?.received && order.date) {
+        const orderDate = new Date(order.date);
+        const monthKey = `${orderDate.getFullYear()}-${(
+          orderDate.getMonth() + 1
+        )
+          .toString()
+          .padStart(2, '0')}`;
+        if (monthlySales.has(monthKey)) {
+          monthlySales.set(
+            monthKey,
+            (monthlySales.get(monthKey) || 0) + order.transaction.received
+          );
+        }
+      }
+    });
+
+    return monthlySales;
+  }
+
   calculateAverageOrderValue(orders: Order[]): number {
     if (orders.length === 0) {
       return 0;

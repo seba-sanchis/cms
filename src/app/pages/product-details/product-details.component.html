@@ -31,16 +31,23 @@
         <div formArrayName="features" class="input-container">
           <div class="features-section">
             <label for="features">Atributos</label>
-            <div *ngFor="let feature of features.controls; let i = index">
-              <input id="features-{{ i }}" type="text" [formControlName]="i" />
+
+            @for (feature of features.controls; track $index) {
+            <div>
+              <input
+                id="features-{{ $index }}"
+                type="text"
+                [formControlName]="$index"
+              />
               <button
                 type="button"
-                (click)="removeFeature(i)"
+                (click)="removeFeature($index)"
                 class="remove-btn"
               >
                 <span class="material-symbols-rounded"> remove </span>
               </button>
             </div>
+            }
           </div>
           <button type="button" (click)="addFeature()" class="add-btn">
             <span class="material-symbols-rounded"> add </span>
@@ -76,22 +83,35 @@
           <div class="inventory-section">
             <div formArrayName="sizes" class="col">
               <label for="sizes">Talle</label>
-              <div *ngFor="let size of sizes.controls; let i = index">
-                <input id="sizes-{{ i }}" type="text" [formControlName]="i" />
+              @for (size of sizes.controls; track $index) {
+              <div>
+                <input
+                  id="sizes-{{ $index }}"
+                  type="text"
+                  [formControlName]="$index"
+                />
               </div>
+              }
             </div>
             <div formArrayName="stock" class="col">
               <label for="stock">Stock</label>
-              <div *ngFor="let stock of stock.controls; let i = index">
-                <input id="stock-{{ i }}" type="number" [formControlName]="i" />
+
+              @for (stock of stock.controls; track $index) {
+              <div>
+                <input
+                  id="stock-{{ $index }}"
+                  type="number"
+                  [formControlName]="$index"
+                />
                 <button
                   type="button"
-                  (click)="removeSize(i)"
+                  (click)="removeSize($index)"
                   class="remove-btn"
                 >
                   <span class="material-symbols-rounded"> remove </span>
                 </button>
               </div>
+              }
             </div>
           </div>
           <button type="button" (click)="addSize()" class="add-btn">

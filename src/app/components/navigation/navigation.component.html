@@ -1,6 +1,7 @@
 <nav class="navigation-drawer">
   <ul>
-    <li *ngFor="let link of links">
+    @for (link of links; track $index) {
+    <li>
       <a
         [routerLink]="link.url"
         [ngClass]="{ 'is-active': isActiveLink(link.url) }"
@@ -11,5 +12,6 @@
         <span>{{ link.name }}</span></a
       >
     </li>
+    }
   </ul>
 </nav>
