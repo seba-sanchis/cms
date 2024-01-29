@@ -9,4 +9,10 @@
   color: $text-primary;
   box-shadow: 0 1px 4px 1px rgba(0, 0, 0, 0.12);
   position: relative;
+
+  .title {
+    font-weight: 600;
+    font-size: 25px;
+    line-height: 32px;
+  }
 }
