@@ -1,4 +1,4 @@
 export const environment = {
-  baseUrl: process.env['BASE_URL'],
-  awsS3: process.env['S3_BUCKET'],
+  baseUrl: 'https://e-commerce.sebastiansanchis.com',
+  awsS3: 'https://seba-sanchis.s3.amazonaws.com',
 };
