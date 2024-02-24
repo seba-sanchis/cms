@@ -1,16 +1,21 @@
-import { Account } from './account.model';
-import { Item } from './item.model';
 import { Order } from './order.model';
-import { Privacy } from './privacy.model';
 import { Product } from './product.model';
-import { Shipping } from './shipping.model';
 
 export interface User {
   _id: string;
-  account: Account;
-  privacy: Privacy;
-  shipping: Shipping;
-  bag?: Item[] | null;
+  email: string;
+  password?: string;
+  firstName: string;
+  lastName: string;
+  dni: string;
+  birthday: string;
+  region: string;
+  location: string;
+  address: string;
+  zip: string;
+  areaCode: string;
+  phone: string;
+  bag?: { product: Product; quantity: number; size?: string }[] | null;
   favorite?: Product[] | null;
   purchases?: Order[] | null;
 }

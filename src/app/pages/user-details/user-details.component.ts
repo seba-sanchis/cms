@@ -47,23 +47,23 @@ export class UserDetailsComponent {
   private fetchUser(id: string): void {
     this.userDetailsService.getUser(id).subscribe((data) => {
       // Format the date to 'YYYY-MM-DD'
-      const formattedBirthday = data.privacy.birthday
-        ? new Date(data.privacy.birthday).toISOString().split('T')[0]
+      const formattedBirthday = data.birthday
+        ? new Date(data.birthday).toISOString().split('T')[0]
         : '';
 
       // Set form values based on the fetched product
       this.userForm.setValue({
-        firstName: data.privacy.firstName || null,
-        lastName: data.privacy.lastName || null,
-        dni: data.privacy.dni || null,
-        email: data.account.email || null,
+        firstName: data.firstName || null,
+        lastName: data.lastName || null,
+        dni: data.dni || null,
+        email: data.email || null,
         birthday: formattedBirthday || null,
-        region: data.shipping.region || null,
-        location: data.shipping.location || null,
-        address: data.shipping.address || null,
-        zip: data.shipping.zip || null,
-        areaCode: data.shipping.areaCode || null,
-        phone: data.shipping.phone || null,
+        region: data.region || null,
+        location: data.location || null,
+        address: data.address || null,
+        zip: data.zip || null,
+        areaCode: data.areaCode || null,
+        phone: data.phone || null,
       });
     });
   }

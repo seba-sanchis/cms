@@ -11,9 +11,9 @@
   <tbody>
     @for (user of users; track $index) {
     <tr [routerLink]="['/users', user._id]">
-      <td>{{ user.privacy.firstName }} {{ user.privacy.lastName }}</td>
-      <td>{{ user.account.email }}</td>
-      <td>{{ user.shipping.location }}, {{ user.shipping.region }}</td>
+      <td>{{ user.firstName }} {{ user.lastName }}</td>
+      <td>{{ user.email }}</td>
+      <td>{{ user.location }}, {{ user.region }}</td>
       <td>{{ userQuantities[$index].amountOfOrders }}</td>
       <td>{{ userQuantities[$index].totalReceived | currency }}</td>
     </tr>
