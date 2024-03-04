@@ -1,115 +1,123 @@
 @import "../../styles/variables.scss";
 
 .main-panel {
-  display: flex;
+  display: grid;
   flex-direction: column;
 
   width: 100%;
   gap: 32px;
   padding: 32px;
 
-  .row-card {
-    display: flex;
+  grid-template-columns: repeat(3, 1fr);
+
+  @media (min-width: 1280px) {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  .basic-card {
+    padding: 24px;
     width: 100%;
-    gap: 32px;
+    height: 320px;
+    background-color: $brand-background;
+    border: 1px solid $line-divider;
+    border-radius: $standard-border-radius;
 
-    .basic-card {
-      padding: 24px;
-      width: 256px;
-      height: 320px;
-      background-color: $brand-background;
-      border: 1px solid $line-divider;
-      border-radius: $standard-border-radius;
+    .item-title {
+      font-weight: 500;
+      font-size: 18px;
+      line-height: 24px;
+    }
 
-      .item-title {
-        font-weight: 500;
-        font-size: 18px;
-        line-height: 24px;
-      }
+    .item-subtitle {
+      font-weight: 400;
+      font-size: 13px;
+      line-height: 20px;
+      color: $text-primary;
+      padding-top: 11px;
+    }
 
-      .item-subtitle {
-        font-weight: 400;
-        font-size: 13px;
-        line-height: 20px;
-        color: $text-primary;
-        padding-top: 11px;
-      }
+    .metric-value {
+      font-weight: 400;
+      font-size: 32px;
+      letter-spacing: -0.01em;
+      line-height: 40px;
+      color: $text-primary;
+    }
 
-      .metric-value {
-        font-weight: 400;
-        font-size: 32px;
-        letter-spacing: -0.01em;
-        line-height: 40px;
-        color: $text-primary;
-      }
+    .divider {
+      margin: 8px 0;
+      border: 0;
+      border-bottom: 1px solid $line-divider;
+    }
 
-      .divider {
-        margin: 8px 0;
-        border: 0;
-        border-bottom: 1px solid $line-divider;
-      }
+    .metrics-section {
+      list-style: none;
+      display: table;
+      width: 100%;
+      padding-top: 13px;
+      padding-bottom: 6px;
 
-      .metrics-section {
-        list-style: none;
-        display: table;
-        width: 100%;
-        padding-top: 13px;
-        padding-bottom: 6px;
+      .metric-row {
+        height: 48px;
+        display: table-row;
+        align-items: center;
 
-        .metric-row {
-          height: 48px;
-          display: table-row;
-          align-items: center;
+        .section-title {
+          font-weight: 500;
+          -webkit-font-smoothing: antialiased;
+          font-size: 15px;
+          line-height: 24px;
+          color: $text-primary;
+        }
 
-          .section-title {
-            font-weight: 500;
-            -webkit-font-smoothing: antialiased;
-            font-size: 15px;
-            line-height: 24px;
-            color: $text-primary;
-          }
+        .section-subtitle {
+          font-weight: 400;
+          -webkit-font-smoothing: antialiased;
+          letter-spacing: 0.011em;
+          font-size: 12px;
+          line-height: 16px;
+          color: $text-primary;
+          padding-top: 1px;
+          padding-bottom: 0;
+          display: block;
+        }
 
-          .section-subtitle {
-            font-weight: 400;
-            -webkit-font-smoothing: antialiased;
-            letter-spacing: 0.011em;
-            font-size: 12px;
-            line-height: 16px;
-            color: $text-primary;
-            padding-top: 1px;
-            padding-bottom: 0;
-            display: block;
-          }
+        .metric-title {
+          display: table-cell;
+          font-weight: 400;
+          font-size: 13px;
+          line-height: 20px;
+          color: $text-primary;
+          padding-top: 5px;
+          padding-bottom: 7px;
+        }
 
-          .metric-title {
-            display: table-cell;
-            font-weight: 400;
-            font-size: 13px;
-            line-height: 20px;
-            color: $text-primary;
-            padding-top: 5px;
-            padding-bottom: 7px;
-          }
-
-          .metric-value {
-            display: table-cell;
-            font-weight: 400;
-            font-size: 13px;
-            line-height: 20px;
-            color: $text-primary;
-            padding-top: 5px;
-            padding-bottom: 7px;
-            white-space: nowrap;
-            text-align: right;
-            padding-left: 8px;
-          }
+        .metric-value {
+          display: table-cell;
+          font-weight: 400;
+          font-size: 13px;
+          line-height: 20px;
+          color: $text-primary;
+          padding-top: 5px;
+          padding-bottom: 7px;
+          white-space: nowrap;
+          text-align: right;
+          padding-left: 8px;
         }
       }
     }
+  }
 
-    .expanded {
-      width: 512px;
+  .expanded {
+    grid-column: span 1;
+
+    @media (min-width: 1280px) {
+      grid-column: span 2;
     }
+  }
+
+  .expanded-always {
+    grid-column: span 2;
   }
 }
 
@@ -139,7 +147,6 @@
 
 .bar-chart-container {
   display: flex;
-  // border: 1px solid red;
   width: 100%;
   height: 256px;
   padding-top: 13px;
@@ -161,16 +168,15 @@
 }
 
 .bar {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: end;
   margin-right: 8px;
   text-align: center;
   position: relative;
   width: 32px;
   height: 100%;
-  // border: 1px solid blue;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: end;
 }
 
 .bar-value {

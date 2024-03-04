@@ -1,10 +1,14 @@
 @import "../../styles/variables.scss";
 
 .navigation-drawer {
-  width: 256px;
+  width: 64px;
   height: 100%;
   border-right: 1px solid $line-divider;
   background-color: $brand-background;
+
+  @media (min-width: 1280px) {
+    width: 256px;
+  }
 
   ul {
     list-style: none;
@@ -36,6 +40,14 @@
     .icon-item {
       margin-left: 8px;
       margin-right: 24px;
+    }
+
+    .hidden {
+      display: none;
+
+      @media (min-width: 1280px) {
+        display: inline-block;
+      }
     }
 
     &::after {

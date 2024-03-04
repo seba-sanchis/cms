@@ -26,7 +26,12 @@
         </div>
         <div class="input-container">
           <label for="tag">Sección</label>
-          <select type="text" id="tag" formControlName="tag" class="input-select">
+          <select
+            type="text"
+            id="tag"
+            formControlName="tag"
+            class="input-select"
+          >
             <option value="banner">Banner</option>
             <option value="category">Categoría</option>
             <option value="social-media">Red Social</option>
@@ -37,14 +42,12 @@
 
       <div class="sidepanel">
         <div class="input-container">
-          <div class="img-container">
-            <img
-              [src]="contentForm.get('image')?.value"
-              alt="content image"
-              width="326"
-              height="326"
-            />
-          </div>
+          <img
+            [src]="contentForm.get('image')?.value"
+            alt="content image"
+            width="326"
+            height="326"
+          />
           <label for="file">Imagen</label>
           <input
             type="file"

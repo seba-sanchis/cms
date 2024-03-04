@@ -34,7 +34,12 @@
   }
   .details-section {
     display: flex;
+    flex-direction: column;
     padding: 0 24px;
+
+    @media (min-width: 1280px) {
+      flex-direction: row;
+    }
 
     .left-col {
       min-width: 640px;
@@ -92,8 +97,10 @@
     }
 
     .sidepanel {
-      width: calc(352px + 24px);
-      padding-left: 24px;
+      @media (min-width: 1280px) {
+        width: calc(352px + 24px);
+        padding-left: 24px;
+      }
 
       div {
         margin-bottom: 24px;

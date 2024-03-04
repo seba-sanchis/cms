@@ -35,7 +35,12 @@
   }
   .details-section {
     display: flex;
+    flex-direction: column;
     padding: 0 24px;
+
+    @media (min-width: 1280px) {
+      flex-direction: row;
+    }
 
     .add-btn {
       display: flex;
@@ -132,8 +137,10 @@
     }
 
     .sidepanel {
-      width: calc(352px + 24px);
-      padding-left: 24px;
+      @media (min-width: 1280px) {
+        width: calc(352px + 24px);
+        padding-left: 24px;
+      }
 
       .input-container {
         margin-bottom: 24px;
@@ -173,18 +180,21 @@
 
         img {
           align-self: center;
+          max-width: 100%;
+          height: auto;
         }
 
         .inventory-section {
           display: flex;
           flex-direction: row;
           justify-content: space-between;
+          gap: 8px;
 
           .col {
             padding-top: 8px;
+            flex: 1;
 
             input {
-              width: 128px;
               margin: 8px 0;
               padding: 0 12px;
               border: 1px solid $container-border;
